@@ -1,0 +1,131 @@
+Build strong intuition about arrays (Python lists), memory behavior, access cost, and common pitfalls, base layer for all DSA.
+
+1️⃣ What is an Array? (Python Context)
+Definition
+An array is a collection of elements stored in a linear fashion and accessed using an index.
+
+In Python:
+Arrays are implemented as lists
+Lists store references to objects, not raw values
+
+arr = [10, 20, 30, 40]
+Indexing
+Zero-based indexing
+Valid indices: 0 to n-1
+
+Index:   0    1    2    3
+Value: 10   20   30   40
+Memory Reality (Important Concept)
+
+The list container stores references contiguously
+Actual objects may live anywhere in memory
+
+List ──▶ [ ref ][ ref ][ ref ]
+           ↓     ↓     ↓
+        object object object
+
+✅ This is why lists allow fast indexing but costly insertions
+
+2️⃣ Access, Traversal & Modification Costs
+Time Complexity Table
+Operation	Time
+Access arr[i]	O(1)
+Traverse	O(n)
+Insert at end	O(1) amortized
+Insert/Delete middle	O(n)
+Why insertion is costly?
+
+Elements must shift to maintain order
+
+arr = [1,2,3,4]
+arr.insert(1,99)
+# shifting happens → O(n)
+3️⃣ Mutability & Reference Behavior
+Lists are Mutable
+
+Changes affect the original list
+
+a = [1,2]
+b = a
+b.append(3)
+print(a)  # [1,2,3]
+Avoid Unwanted Changes
+
+Use copy when required
+
+b = a.copy()
+# or
+b = a[:]
+
+🔑 Interview Keyword: aliasing problem
+
+4️⃣ Looping Patterns & Index Thinking
+Standard Traversal
+for i in range(len(arr)):
+    print(arr[i])
+Element-Based Traversal
+for x in arr:
+    print(x)
+Index + Value
+for i, val in enumerate(arr):
+    print(i, val)
+Row–Column Mental Model
+
+i → position (row)
+
+value → content
+
+This mental model helps later in 2D arrays & matrices
+
+5️⃣ Common Array Mistakes (Very Important)
+❌ Modifying list while iterating
+
+for x in arr:
+    arr.remove(x)  # bug-prone
+
+❌ Assuming contiguous object memory
+❌ Forgetting bounds
+arr[len(arr)]  # IndexError
+
+Core Problems = 
+
+Problem 1: Reverse Array (In-place)
+def reverse(arr):
+l, r = 0, len(arr)-1
+while l < r:
+arr[l], arr[r] = arr[r], arr[l]
+l += 1
+r -= 1
+TC: O(n), SC: O(1)
+
+
+Problem 2: Max & Min in Single Loop
+def max_min(arr):
+mx = mn = arr[0]
+for x in arr:
+if x > mx: mx = x
+if x < mn: mn = x
+return mx, mn
+
+
+Problem 3: Check if Array is Sorted
+def is_sorted(arr):
+for i in range(1, len(arr)):
+if arr[i] < arr[i-1]:
+return False
+return True
+
+
+Problem 4: Rotate Array by k (Extra Space)
+def rotate(arr, k):
+k %= len(arr)
+return arr[-k:] + arr[:-k]
+
+
+Extra - 
+Python list = dynamic array
+Over-allocation enables O(1) append
+For heavy insert/delete → consider deque
+Always mention TC + SC verbally
+
+✅ Correct approach: use indices or temp list
