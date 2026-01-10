@@ -1,0 +1,198 @@
+
+Learn to **think in growth rates**, quickly **analyze loops**, and **optimize naive solutions**. By the end, you should confidently say the **TC (and why)** for most beginner problems.
+---
+
+## 1️⃣ What Time Complexity Really Means
+
+### Core Idea
+
+Time Complexity is **not the time taken**, but the **rate at which operations grow** with input size `n`.
+
+* Independent of machine
+* Focuses on scalability
+* Measured in terms of primitive operations
+
+📌 Interview phrase to remember:
+
+> “We analyze how the algorithm scales as input increases.”
+
+---
+
+## 2️⃣ Big-O, Theta, Omega (Clean Mental Model)
+
+### Big-O → Upper Bound (Worst Case)
+
+* Maximum work algorithm can do
+* Used most in interviews
+
+### Theta → Tight/Average Bound
+
+* Typical behavior
+
+### Omega → Lower Bound (Best Case)
+
+* Minimum possible work
+
+⚠️ In practice: **use Big-O unless asked otherwise**.
+
+---
+
+## 3️⃣ Rules You MUST Apply 
+
+### Rule 1: Ignore Constants
+
+```python
+for i in range(5*n):   # O(n)
+    pass
+```
+
+### Rule 2: Ignore Lower Order Terms
+
+```python
+O(n^2 + n + 10) → O(n^2)
+```
+
+### Rule 3: Sequential Blocks Add
+
+```python
+O(n) + O(n) = O(n)
+```
+
+### Rule 4: Nested Blocks Multiply
+
+```python
+for i in range(n):
+    for j in range(n):
+        pass
+# O(n^2)
+```
+
+---
+
+## 4️⃣ Loop Analysis Techniques (Very Important)
+
+### Technique 1: Count Rows & Columns
+
+* Outer loop → rows
+* Inner loop → columns
+
+Total operations = rows × columns
+
+---
+
+### Technique 2: Variable Loop Bounds
+
+```python
+for i in range(n):
+    for j in range(i):
+        pass
+```
+
+Operations:
+
+```
+1 + 2 + 3 + ... + n = n(n+1)/2
+```
+
+👉 **O(n²)**
+
+---
+
+### Technique 3: Changing Loop Direction
+
+```python
+for i in range(n, 0, -1):
+    pass
+```
+
+Still **O(n)** (direction doesn’t matter)
+
+---
+
+## 5️⃣ When Time Complexity is Logarithmic
+
+### Key Signal
+
+* Input size **divides** each iteration
+
+```python
+while n > 1:
+    n //= 2
+```
+
+Iterations ≈ log₂(n)
+
+👉 **O(log n)**
+
+---
+
+## 6️⃣ Competitive Programming Rule 
+
+* ~10⁸ operations ≈ 1 second
+
+| Complexity | Max n (approx) |
+| ---------- | -------------- |
+| O(n)       | 10⁸            |
+| O(n log n) | 10⁷            |
+| O(n²)      | 10⁴            |
+| O(n³)      | 500            |
+
+Use this to **reject slow solutions early**.
+
+---
+
+## 🧪 Practice Problems 
+
+### Problem 1: TC of Nested Loop
+
+```python
+for i in range(n):
+    for j in range(i):
+        print(i, j)
+```
+
+Explain using summation.
+
+---
+
+### Problem 2: Optimize Double Loop
+
+Naive:
+
+```python
+for i in range(n):
+    for j in range(n):
+        if arr[i] == arr[j]:
+            count += 1
+```
+
+Optimize to **O(n)** using a dictionary.
+
+---
+
+### Problem 3: Identify Logarithmic Loop
+
+```python
+x = n
+while x > 0:
+    x //= 3
+```
+
+Find TC and explain.
+
+---
+
+### Problem 4: Pattern Printing TC
+
+Analyze TC for pattern programs where print is inside inner loop.
+
+---
+
+## 🎁 Bonus (Exam + Interview Edge)
+
+* Printing counts as O(1) per print
+* Direction of loop doesn’t change TC
+* Focus on **what shrinks or grows**
+* Most optimizations come from removing nested loops
+
+---
