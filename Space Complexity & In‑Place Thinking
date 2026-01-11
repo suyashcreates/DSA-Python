@@ -1,0 +1,167 @@
+Learn to **analyze memory usage**, distinguish **input space vs auxiliary space**, 
+and make correct decisions between **in‑place algorithms vs extra space** solutions. 
+These concepts directly affects **interview decisions and optimal coding**.
+---
+
+## 1️ What is Space Complexity (Clear Definition)
+
+### Space Complexity
+
+Space complexity is the **total memory used by an algorithm** as input size grows.
+
+It includes:
+
+1. **Input Space** – memory to store input
+2. **Auxiliary Space** – extra memory used to solve the problem
+
+```
+Total Space = Input Space + Auxiliary Space
+```
+
+ Interview focus is usually on **auxiliary space**.
+---
+
+## 2️ Input Space vs Auxiliary Space (From Your Notes)
+
+### Example
+
+```python
+def add(a, b):
+    c = a + b
+    return c
+```
+
+* Input space → `a`, `b`
+* Auxiliary space → `c`
+
+```
+a + b = input
+c = auxiliary
+```
+
+If problem says:
+
+> “Do not use extra space”
+ It means **no extra auxiliary space**, input space is allowed.
+---
+
+## 3️ In‑Place Algorithms (Very Important)
+
+### In‑Place Definition
+
+An algorithm that uses **O(1) auxiliary space**.
+
+Example:
+
+```python
+def reverse(arr):
+    l, r = 0, len(arr)-1
+    while l < r:
+        arr[l], arr[r] = arr[r], arr[l]
+        l += 1
+        r -= 1
+```
+
+* TC → O(n)
+* SC → O(1)
+
+---
+## 4️ When NOT to Modify Input (Decision Rule)
+
+### Rule from Interviews
+
+* If input must be preserved → use extra space
+* If space constrained → modify input
+
+❌ Modifying input directly can **fail hidden test cases**
+
+Correct approach:
+
+```python
+def safe_reverse(arr):
+    return arr[::-1]
+```
+
+* TC → O(n)
+* SC → O(n)
+
+---
+
+## 5️ Space Complexity of Common Structures
+
+| Structure           | Space |
+| ------------------- | ----- |
+| Variables           | O(1)  |
+| Array of size n     | O(n)  |
+| Dictionary (n keys) | O(n)  |
+| Recursion stack     | O(n)  |
+
+Recursion always adds **stack space**.
+---
+
+## 6 Recursion & Space (Stack Overflow Risk)
+
+### Example
+
+```python
+def fact(n):
+    if n == 0:
+        return 1
+    return n * fact(n-1)
+```
+
+* Calls stored on stack
+* Space → O(n)
+
+Stack overflow happens when recursion depth is too large.
+
+---
+
+##  Practice Problems 
+
+### Problem 1: In‑Place Array Reverse
+
+Explain why SC = O(1)
+
+---
+
+### Problem 2: Frequency Count
+
+```python
+freq = {}
+for x in arr:
+    freq[x] = freq.get(x, 0) + 1
+```
+
+Find auxiliary space.
+
+---
+
+### Problem 3: Recursive Sum of Array
+
+Analyze space complexity.
+
+---
+
+### Problem 4: Compare Two Approaches
+
+Solve same problem using:
+
+* extra space
+* in‑place
+
+Compare TC & SC.
+
+---
+
+##  Bonus (Interview Traps)
+
+* Using temp array ≠ in‑place
+* Python slicing uses extra memory
+* Recursion ≠ O(1) space
+* Hashing always costs space
+
+---
+
+
+---
