@@ -1,0 +1,174 @@
+## 1️⃣ What is Recursion (Core Idea)
+
+### Concept
+
+A function calling **itself** to solve a **smaller version** of the same problem.
+
+### Two Mandatory Parts
+
+* **Base Case** → stops recursion
+* **Recursive Case** → reduces the problem
+
+### Example
+
+```python
+def fun(n):
+    if n == 0:        # base case
+        return
+    print(n)
+    fun(n-1)          # recursive call
+```
+
+### Key Rule
+
+❌ No base case → **infinite recursion → stack overflow**
+
+---
+
+## 2️⃣ Recursion Works Like a Stack 🧠
+
+### Concept
+
+* Function calls go **into stack**
+* Returns come **out in reverse order**
+
+### Example
+
+```python
+fun(3)
+```
+
+### Stack Flow
+
+```
+fun(3)
+ fun(2)
+  fun(1)
+   fun(0)  ← stops
+```
+
+### Output Order
+
+* Print **before call** → top to bottom
+* Print **after call** → bottom to top
+
+---
+
+## 3️⃣ Parameterized vs Functional Recursion
+
+### Parameterized Recursion
+
+Result is carried using parameters.
+
+```python
+def sum_n(n, s):
+    if n == 0:
+        print(s)
+        return
+    sum_n(n-1, s+n)
+```
+
+### Functional Recursion
+
+Function **returns value**.
+
+```python
+def sum_n(n):
+    if n == 0:
+        return 0
+    return n + sum_n(n-1)
+```
+
+### Rule
+
+* Printing → parameterized
+* Returning value → functional
+
+---
+
+## 4️⃣ Recursive Tree & Time Complexity
+
+### Concept
+
+Each recursive call forms a **branch**.
+
+### Example
+
+```python
+def fib(n):
+    if n <= 1:
+        return n
+    return fib(n-1) + fib(n-2)
+```
+
+### Complexity
+
+* TC → **O(2ⁿ)**
+* SC → **O(n)** (stack height)
+
+⚠️ Recursive tree grows **exponentially** if overlapping calls exist.
+
+---
+
+## 5️⃣ Helper Function Pattern
+
+### When Needed
+
+* Extra parameters
+* Clean interface
+* Backtracking problems
+
+### Example
+
+```python
+def reverse_list(arr):
+    def helper(l, r):
+        if l >= r:
+            return
+        arr[l], arr[r] = arr[r], arr[l]
+        helper(l+1, r-1)
+    helper(0, len(arr)-1)
+```
+
+### Advantage
+
+* Keeps main function simple
+* Avoids global variables
+
+---
+
+## 6️⃣ Stack Overflow & How to Avoid It
+
+### Stack Overflow Happens When
+
+* No base case
+* Base case never reached
+* Too deep recursion
+
+### Prevention
+
+* Always **dry run**
+* Ensure problem size reduces
+* Prefer iteration if depth is large
+
+---
+
+## 🧪 Practice Problems
+
+1. Print numbers from 1 to N (recursion)
+2. Print numbers from N to 1
+3. Find sum of first N numbers
+4. Factorial using recursion
+5. Reverse an array using recursion
+
+---
+
+## 🎁 Bonus (Interview Thinking)
+
+* Recursion = **implicit stack**
+* Always ask: *What is changing per call?*
+* If result needed → return recursion
+* If action needed → parameterized recursion
+
+---
+
