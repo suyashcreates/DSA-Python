@@ -1,0 +1,181 @@
+
+## 1️⃣ How to THINK in Recursion (Most Important Skill)
+
+### Golden Question
+
+For every recursion problem, ask:
+
+> “What does my function assume is already solved?”
+
+You **never** solve the full problem at once.
+You solve **n → n-1** and trust the stack.
+
+Example:
+
+```python
+def print_n(n):
+    if n == 0:
+        return
+    print_n(n-1)
+    print(n)
+```
+
+Here you assume:
+
+* `print_n(n-1)` already works
+
+---
+
+## 2️⃣ Print vs Return in Recursion (Common Confusion)
+
+### Printing Recursion
+
+* Output-based
+* No value returned
+
+```python
+def print_sum(n, s):
+    if n == 0:
+        print(s)
+        return
+    print_sum(n-1, s+n)
+```
+
+### Returning Recursion
+
+* Value-based
+* Used in calculations
+
+```python
+def sum_n(n):
+    if n == 0:
+        return 0
+    return n + sum_n(n-1)
+```
+
+📌 **Rule**
+
+* If answer is a value → `return`
+* If answer is an action → `print`
+
+---
+
+## 3️⃣ Order of Execution (Before vs After Call)
+
+### Print BEFORE Recursive Call
+
+```python
+def fun(n):
+    if n == 0:
+        return
+    print(n)
+    fun(n-1)
+```
+
+Output: `n → 1`
+
+### Print AFTER Recursive Call
+
+```python
+def fun(n):
+    if n == 0:
+        return
+    fun(n-1)
+    print(n)
+```
+
+Output: `1 → n`
+
+🧠 This decides **normal vs reverse output**
+
+---
+
+## 4️⃣ Dry Running with Stack Frames (Mandatory Habit)
+
+Example:
+
+```python
+fun(3)
+```
+
+Stack growth:
+
+```
+fun(3)
+ fun(2)
+  fun(1)
+   fun(0)  ← base case
+```
+
+Stack unwind:
+
+```
+return from fun(1)
+return from fun(2)
+return from fun(3)
+```
+
+📌 **Never code recursion without dry run**
+
+---
+
+## 5️⃣ Recursion Depth & Stack Overflow
+
+### Why Stack Overflow Happens
+
+* Base case missing
+* Problem size not reducing
+* Too deep recursion (n > 10⁵)
+
+### Example of Dangerous Code ❌
+
+```python
+def fun(n):
+    fun(n-1)
+```
+
+### Safe Thinking
+
+* Every call must move **closer to base case**
+* Reduction must be obvious
+
+---
+
+## 6️⃣ Classic Beginner Recursion Problems (Must Master)
+
+These build intuition, not difficulty.
+
+1. Print name N times
+2. Print 1 to N
+3. Print N to 1
+4. Sum of first N numbers
+5. Factorial of N
+
+👉 Solve all **without loops**
+
+---
+
+## 🧪 Practice Problems for Today (Commit These)
+
+Create one file per problem.
+
+* `print_1_to_n.py`
+* `print_n_to_1.py`
+* `sum_of_n.py`
+* `factorial.py`
+* `print_name_n_times.py`
+
+Add **comments explaining stack flow**.
+
+---
+
+
+## 🎁 Small but Powerful Tip
+
+If recursion feels confusing:
+
+* Write the **base case first**
+* Then write **only one recursive call**
+* Trust the stack, don’t fight it
+
+
