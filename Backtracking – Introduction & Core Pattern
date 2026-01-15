@@ -1,0 +1,132 @@
+
+## 1️⃣ What is Backtracking (In Simple Words)
+
+### Concept
+
+Backtracking =
+
+> **Try → Explore → Undo → Try another path**
+
+It is **recursion + decision making**.
+
+You:
+
+1. Make a choice
+2. Go deeper
+3. Undo the choice
+4. Try the next option
+
+📌 Used when:
+
+* Multiple answers are possible
+* You need **all combinations / paths**
+
+---
+
+## 2️⃣ Difference: Recursion vs Backtracking
+
+| Recursion     | Backtracking     |
+| ------------- | ---------------- |
+| One path      | Multiple paths   |
+| No undo       | Undo required    |
+| Linear        | Tree-like        |
+| Eg: factorial | Eg: combinations |
+
+💡 Backtracking always forms a **recursive tree**.
+
+---
+
+## 3️⃣ Core Backtracking Template (VERY IMPORTANT)
+
+Memorize this pattern 👇
+
+```python
+def backtrack(state):
+    if base_condition:
+        answer.append(state.copy())
+        return
+
+    for choice in choices:
+        make_choice(choice)
+        backtrack(state)
+        undo_choice(choice)
+```
+
+📌 This template repeats in **all** backtracking problems.
+
+---
+
+## 4️⃣ Example 1: Print All Subsequences
+
+Given: `[1, 2]`
+
+### Code
+
+```python
+def subseq(i, arr, temp):
+    if i == len(arr):
+        print(temp)
+        return
+
+    # pick
+    temp.append(arr[i])
+    subseq(i+1, arr, temp)
+
+    # not pick (undo)
+    temp.pop()
+    subseq(i+1, arr, temp)
+
+subseq(0, [1,2], [])
+```
+
+### Output
+
+```
+[1,2]
+[1]
+[2]
+[]
+```
+
+🧠 This shows **pick / not pick** decision.
+
+---
+
+## 5️⃣ Undo Step (Most Important Part)
+
+### Why Undo?
+
+Because recursion shares the **same memory reference**.
+
+```python
+temp.append(x)   # do
+...
+temp.pop()       # undo
+```
+
+❌ Without undo → wrong answers
+✅ Undo keeps paths independent
+
+---
+
+## 6️⃣ Time Complexity of Backtracking
+
+For pick / not pick problems:
+
+* TC → **O(2ⁿ)**
+* SC → **O(n)** (recursion stack)
+
+📌 Backtracking is **expensive**, but unavoidable.
+
+---
+
+## 🧪 Practice Problems 
+
+Solve these **using backtracking only**:
+
+1. Print all subsequences of an array
+2. Count subsequences with sum = K
+3. Print one subsequence with sum = K
+
+---
+
