@@ -1,0 +1,136 @@
+
+## 1️⃣ Why Duplicate Permutations Occur
+
+### Problem
+
+If input has duplicates:
+
+```
+[1,1,2]
+```
+
+Naive permutation gives:
+
+```
+[1,1,2]
+[1,2,1]
+[1,1,2] ❌ duplicate
+[1,2,1] ❌ duplicate
+[2,1,1]
+[2,1,1] ❌ duplicate
+```
+
+📌 Interviewers **expect you to handle this**.
+
+---
+
+## 2️⃣ Fix: Use a Set at Each Level (Swap Method)
+
+### Idea
+
+At each recursion level:
+
+* Track which elements are already used at this position
+
+### Code
+
+```python
+def permute(i, arr):
+    if i == len(arr):
+        print(arr)
+        return
+
+    used = set()
+    for j in range(i, len(arr)):
+        if arr[j] in used:
+            continue
+        used.add(arr[j])
+
+        arr[i], arr[j] = arr[j], arr[i]
+        permute(i+1, arr)
+        arr[i], arr[j] = arr[j], arr[i]
+```
+
+📌 Set prevents repeating same element at same index.
+
+---
+
+## 3️⃣ Fix Using Sorting + Visited Array
+
+### Concept
+
+* Sort array first
+* Skip same element if previous identical wasn’t used
+
+### Condition
+
+```python
+if i > 0 and arr[i] == arr[i-1] and not used[i-1]:
+    continue
+```
+
+This ensures **unique permutations only**.
+
+---
+
+## 4️⃣ Counting Permutations Without Generating All
+
+### Formula (Math Insight)
+
+If:
+
+```
+n total elements
+k1, k2 duplicates
+```
+
+Then:
+
+```
+Total permutations = n! / (k1! * k2!)
+```
+
+Example:
+
+```
+[1,1,2] → 3! / 2! = 3
+```
+
+📌 Useful when output not required.
+
+---
+
+## 5️⃣ When NOT to Use Backtracking for Permutations
+
+Avoid recursion when:
+
+* Only count needed
+* n is large (n > 10)
+* Constraints allow math shortcut
+
+Interview skill = **choosing not to code**
+
+---
+
+## 6️⃣ Common Interview Mistakes (Avoid These)
+
+❌ Forgetting undo step
+❌ Generating duplicates
+❌ Using extra space when not needed
+❌ Ignoring constraints
+
+✅ Always ask:
+
+> “Are elements unique?”
+
+---
+
+## 🧪 Practice Problems 
+
+1. Print unique permutations of `[1,1,2]`
+2. Count unique permutations
+3. Explain difference between swap vs visited in comments
+
+(No new patterns, only refinement)
+
+---
