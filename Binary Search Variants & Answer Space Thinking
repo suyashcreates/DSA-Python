@@ -1,0 +1,127 @@
+
+## 1️⃣ Why Binary Search Is More Than “Find an Element”
+
+### Core Insight
+
+Binary Search is not just for arrays.
+It works wherever the **answer space is monotonic**.
+
+📌 If:
+
+* answer goes **false → true**
+  or
+* answer goes **true → false**
+
+→ Binary Search applies.
+
+---
+
+## 2️⃣ Lower Bound & Upper Bound (Foundational Variant)
+
+### Lower Bound
+
+First index where `arr[i] >= target`
+
+### Upper Bound
+
+First index where `arr[i] > target`
+
+### Code (Lower Bound)
+
+```python
+def lower_bound(arr, target):
+    low, high = 0, len(arr)
+    while low < high:
+        mid = (low + high) // 2
+        if arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid
+    return low
+```
+
+📌 This pattern appears everywhere later (STL, problems).
+
+---
+
+## 3️⃣ Binary Search on Answer (Key Pattern)
+
+### Idea
+
+Instead of searching in array, search in **range of answers**.
+
+Example:
+
+* Minimum speed
+* Minimum days
+* Maximum capacity
+
+You ask:
+
+> “Is this answer possible?”
+
+---
+
+## 4️⃣ Feasibility Function (Heart of the Pattern)
+
+### Template
+
+```python
+def is_possible(mid):
+    # check if mid satisfies condition
+    return True or False
+```
+
+Binary Search controls `mid`,
+`is_possible()` validates it.
+
+📌 Separation of concerns is crucial.
+
+---
+
+## 5️⃣ Binary Search on Answer Template
+
+```python
+low, high = min_value, max_value
+ans = -1
+
+while low <= high:
+    mid = (low + high) // 2
+    if is_possible(mid):
+        ans = mid
+        high = mid - 1   # try better answer
+    else:
+        low = mid + 1
+
+return ans
+```
+
+### Complexity
+
+* **Time → O(log range × check)**
+
+---
+
+## 6️⃣ Common Mistakes to Avoid
+
+❌ Using binary search without monotonicity
+❌ Wrong low / high updates
+❌ Infinite loops
+❌ Mixing array index BS with answer BS
+
+✅ Always ask:
+
+> “If this works, will bigger/smaller also work?”
+
+---
+
+## 🧪 Practice Problems (Today)
+
+1. Implement lower bound
+2. Implement upper bound
+3. Find first occurrence of element
+4. Find last occurrence of element
+
+(Only binary search logic, no brute force)
+
+
