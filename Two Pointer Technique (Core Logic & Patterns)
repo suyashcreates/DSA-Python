@@ -1,0 +1,124 @@
+
+---
+
+## 1️⃣ What is the Two Pointer Technique
+
+### Concept
+
+Use **two indices** to process data instead of nested loops.
+
+Instead of:
+
+* fixing one index and scanning again ❌
+
+You:
+
+* move pointers smartly to reduce work ✅
+
+📌 Goal: **reduce time complexity**
+
+---
+
+## 2️⃣ Why Two Pointers Exist (Motivation)
+
+### Brute Force
+
+```text
+for i:
+  for j:
+```
+
+⏱️ O(n²)
+
+### Two Pointers
+
+```text
+i →     ← j
+```
+
+⏱️ O(n)
+
+📌 This technique replaces many double loops.
+
+---
+
+## 3️⃣ Basic Two Pointer Pattern (Opposite Ends)
+
+### Typical Use
+
+* Sorted data
+* Pair / condition based problems
+
+### Template
+
+```python
+l, r = 0, n-1
+
+while l < r:
+    if condition:
+        l += 1
+    else:
+        r -= 1
+```
+
+📌 Only **one pointer moves per step**.
+
+---
+
+## 4️⃣ Same Direction Two Pointers
+
+### Pattern
+
+Both pointers move forward, but at different speeds.
+
+```python
+slow = 0
+for fast in range(n):
+    if valid:
+        arr[slow] = arr[fast]
+        slow += 1
+```
+
+📌 Used in:
+
+* Removing duplicates
+* Filtering elements
+* In-place modifications
+
+---
+
+## 5️⃣ How to Decide Pointer Movement
+
+Ask:
+
+> “If condition is true, which side should shrink?”
+
+Example logic:
+
+* Sum too big → move right pointer left
+* Sum too small → move left pointer right
+
+📌 Movement is driven by **monotonic behavior**.
+
+---
+
+## 6️⃣ Time & Space Complexity
+
+* **Time** → O(n)
+* **Space** → O(1)
+
+📌 This is why interviewers love this technique.
+
+---
+
+## 🧪 Practice Problems (Today)
+
+Solve using **two pointers only**:
+
+1. Check if a pair exists with given sum (sorted data)
+2. Reverse a sequence using two pointers
+3. Remove duplicates logic (conceptual, no library)
+
+(Add comments explaining pointer movement)
+
+
