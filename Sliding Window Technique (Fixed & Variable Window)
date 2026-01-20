@@ -1,0 +1,120 @@
+
+## 1️⃣ What is Sliding Window (Core Idea)
+
+### Concept
+
+A **window** is a subrange `[l … r]` that moves over data.
+
+Instead of recalculating everything:
+
+* You **reuse previous work**
+* Add one element
+* Remove one element
+
+📌 Used for **subarray / substring** problems.
+
+---
+
+## 2️⃣ Why Sliding Window Exists (Optimization Logic)
+
+### Brute Force
+
+* Check all subarrays
+* Time → **O(n²)**
+
+### Sliding Window
+
+* Each element added once
+* Each element removed once
+
+⏱️ Time → **O(n)**
+
+📌 This is a massive improvement.
+
+---
+
+## 3️⃣ Fixed Size Sliding Window
+
+### When to Use
+
+* Window size `k` is **given**
+
+### Template
+
+```python
+window_sum = sum(arr[:k])
+
+for i in range(k, n):
+    window_sum += arr[i]      # add new
+    window_sum -= arr[i-k]    # remove old
+```
+
+📌 Window size never changes.
+
+---
+
+## 4️⃣ Variable Size Sliding Window
+
+### When to Use
+
+* Condition based window size
+* Example: sum ≤ k, distinct count, etc.
+
+### Template
+
+```python
+l = 0
+for r in range(n):
+    add(arr[r])
+
+    while condition_invalid:
+        remove(arr[l])
+        l += 1
+```
+
+📌 Window **expands and shrinks dynamically**.
+
+---
+
+## 5️⃣ Relationship: Two Pointers vs Sliding Window
+
+| Two Pointers  | Sliding Window      |
+| ------------- | ------------------- |
+| Generic       | Specialized         |
+| Any movement  | Structured movement |
+| Pair problems | Subarray problems   |
+
+📌 Sliding window is **disciplined two pointers**.
+
+---
+
+## 6️⃣ Common Mistakes to Avoid
+
+❌ Resetting window every time
+❌ Nested loops
+❌ Forgetting to remove left element
+❌ Using extra space unnecessarily
+
+✅ Each element must:
+
+* enter window once
+* leave window once
+
+---
+
+## 🧪 Practice Problems 
+
+Solve using **sliding window only**:
+
+1. Maximum sum of subarray of size `k`
+2. First negative number in every window of size `k` (logic only)
+3. Count subarrays with sum ≤ k (conceptual)
+
+Add comments explaining:
+
+* window movement
+* why O(n)
+
+---
+
+
