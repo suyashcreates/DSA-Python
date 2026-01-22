@@ -1,0 +1,111 @@
+
+## 1️⃣ What is Hashing (Simple Meaning)
+
+### Core Idea
+
+Hashing lets you:
+
+* **store**
+* **search**
+* **count**
+
+in **O(1)** average time.
+
+Instead of scanning the array again and again:
+👉 store info once and reuse.
+
+---
+
+## 2️⃣ Frequency Counting (Most Common Use)
+
+### Problem Pattern
+
+“How many times does X appear?”
+
+### Brute Force
+
+* Scan whole array each time
+* ⏱️ O(n²)
+
+### Hashing
+
+* Count once
+* ⏱️ O(n)
+
+---
+
+## 3️⃣ Frequency Array (When Range is Small)
+
+### Example
+
+```python
+arr = [1, 3, 2, 1, 3]
+freq = [0] * 6
+
+for x in arr:
+    freq[x] += 1
+```
+
+📌 Use when:
+
+* Values are small
+* Continuous range
+
+---
+
+## 4️⃣ Hash Map / Dictionary (General Case)
+
+### Example
+
+```python
+freq = {}
+
+for x in arr:
+    freq[x] = freq.get(x, 0) + 1
+```
+
+Operations:
+
+* Insert → O(1)
+* Search → O(1)
+* Update → O(1)
+
+📌 This is used **everywhere** in DSA.
+
+---
+
+## 5️⃣ Where Hashing is Used (Important)
+
+Hashing appears in:
+
+* Duplicate detection
+* Pair sum problems
+* Subarray problems (later)
+* String frequency
+* Prefix sum optimizations
+
+📌 You will see this **daily** later.
+
+---
+
+## 6️⃣ Common Mistakes to Avoid
+
+❌ Using array when range is large
+❌ Forgetting default value
+❌ Modifying hash while iterating
+❌ Thinking hashing is sorted (it is not)
+
+✅ Hashing is about **speed**, not order.
+
+---
+
+## 🧪 Practice Problems
+
+Do only using hashing:
+
+1. Count frequency of elements
+2. Find element with maximum frequency
+3. Check if array contains duplicates
+4. Find first non-repeating element (logic)
+
+
