@@ -1,0 +1,130 @@
+---
+
+## 1️⃣ Core Pattern You Are Learning Today
+
+Many problems secretly mean:
+
+> “Can I remember what I’ve already seen?”
+
+Hashing turns:
+
+* repeated scanning ❌
+* into instant lookup ✅
+
+---
+
+## 2️⃣ Classic Problem Type 1: Pair Exists (Two Sum Logic)
+
+### Problem Statement
+
+Given array `arr` and number `k`
+👉 check if **any pair** sums to `k`
+
+---
+
+### Brute Force
+
+```text
+Check all pairs
+O(n²)
+```
+
+---
+
+### Hashing Insight
+
+While traversing:
+
+* current element = `x`
+* needed = `k - x`
+* check if needed exists in hash
+
+---
+
+### Code
+
+```python
+def pair_exists(arr, k):
+    seen = set()
+    for x in arr:
+        if k - x in seen:
+            return True
+        seen.add(x)
+    return False
+```
+
+⏱️ Time: O(n)
+📦 Space: O(n)
+
+---
+
+## 3️⃣ Why This Works (Important Thinking)
+
+You are **splitting the pair across time**:
+
+* one element seen earlier
+* one element seen now
+
+This is a **recurring DSA trick**.
+
+---
+
+## 4️⃣ Classic Problem Type 2: Count Pairs
+
+Instead of just checking existence:
+👉 count number of valid pairs
+
+### Key Rule
+
+* Use frequency map
+* Be careful of duplicates
+
+---
+
+### Example Logic
+
+```python
+freq = {}
+count = 0
+
+for x in arr:
+    if k - x in freq:
+        count += freq[k - x]
+    freq[x] = freq.get(x, 0) + 1
+```
+
+---
+
+## 5️⃣ Problem Type 3: Missing / Presence Queries
+
+Example:
+
+* “Is X present?”
+* “How many queries?”
+
+Hashing turns:
+
+* repeated searching → O(1)
+
+📌 Used heavily in competitive programming.
+
+---
+
+## 6️⃣ Mistakes Beginners Make
+
+❌ Sorting when hashing is enough
+❌ Forgetting duplicate handling
+❌ Using list instead of set/map
+❌ Overthinking when lookup is needed
+
+---
+
+## 🧪 Practice Problems (Do All)
+
+1. Check if pair with sum `k` exists
+2. Count pairs with sum `k`
+3. Check if array elements are unique
+4. Find element appearing more than once
+
+---
+
