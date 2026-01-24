@@ -1,0 +1,122 @@
+
+---
+
+## 1️⃣ Why Strings Need Separate Attention
+
+Strings look simple but:
+
+* characters are **not numbers**
+* indexing still exists
+* frequency logic changes slightly
+
+Almost every string problem starts with:
+👉 **character frequency**
+
+---
+
+## 2️⃣ Character Hashing Using Array (Fixed Alphabet)
+
+If string contains only:
+
+* lowercase letters `a–z`
+
+You can map:
+
+```
+a → 0
+b → 1
+...
+z → 25
+```
+
+### Code
+
+```python
+s = "abbcaa"
+freq = [0] * 26
+
+for ch in s:
+    freq[ord(ch) - ord('a')] += 1
+```
+
+⏱️ Time: O(n)
+📦 Space: O(1) (constant 26)
+
+---
+
+## 3️⃣ Character Hashing Using Dictionary (General Case)
+
+Use this when:
+
+* uppercase + lowercase
+* digits
+* symbols
+
+```python
+freq = {}
+
+for ch in s:
+    freq[ch] = freq.get(ch, 0) + 1
+```
+
+📌 This is more flexible but uses extra space.
+
+---
+
+## 4️⃣ Common String Frequency Problems
+
+Once freq is ready, problems become easy:
+
+* count characters
+* find repeating characters
+* find non-repeating characters
+* compare two strings
+
+Hashing does **80% of the work**.
+
+---
+
+## 5️⃣ First Non-Repeating Character (Classic)
+
+### Logic
+
+1. Build frequency
+2. Traverse string again
+3. First char with freq = 1
+
+```python
+for ch in s:
+    if freq[ch] == 1:
+        print(ch)
+        break
+```
+
+---
+
+## 6️⃣ Key Observations (Important)
+
+* Strings are arrays of characters
+* Hashing avoids nested loops
+* Frequency → decision → answer
+
+If a string question mentions:
+
+> repeat, unique, anagram, count
+
+Your instinct:
+🔤 **Character Hashing**
+
+---
+
+## 🧪 Practice Problems 
+
+1. Count frequency of characters
+2. Print all repeating characters
+3. First non-repeating character
+4. Check if string has all unique characters
+
+(Do NOT optimize further yet.)
+
+---
+
+
