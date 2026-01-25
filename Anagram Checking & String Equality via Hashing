@@ -1,0 +1,105 @@
+---
+
+## 1️⃣ What is an Anagram (In DSA Terms)
+
+Two strings are anagrams if:
+
+* same characters
+* same frequencies
+* order does **not** matter
+
+Example:
+
+```
+"listen"  ↔  "silent"
+```
+
+---
+
+## 2️⃣ Brute Force Thinking (What NOT to Do)
+
+* Sort both strings
+* Compare
+* ⏱️ O(n log n)
+
+Works, but **not optimal**.
+
+---
+
+## 3️⃣ Optimal Insight (Frequency is the Truth)
+
+If:
+
+* both strings have **identical frequency arrays**
+
+👉 they are anagrams.
+
+---
+
+## 4️⃣ Anagram Check Using Array Hashing
+
+(Assume lowercase a–z)
+
+```python
+def is_anagram(s, t):
+    if len(s) != len(t):
+        return False
+
+    freq = [0] * 26
+
+    for ch in s:
+        freq[ord(ch) - ord('a')] += 1
+
+    for ch in t:
+        freq[ord(ch) - ord('a')] -= 1
+
+    for x in freq:
+        if x != 0:
+            return False
+
+    return True
+```
+
+⏱️ Time: O(n)
+📦 Space: O(1)
+
+---
+
+## 5️⃣ Important Observation (Interview Gold)
+
+You:
+
+* **increment** for first string
+* **decrement** for second string
+
+If everything cancels to zero → perfect match.
+
+This **increment–decrement pattern** appears later in:
+
+* sliding window
+* substring problems
+
+---
+
+## 6️⃣ Related String Comparison Problems
+
+Once you know this, you can solve:
+
+* Check if two strings are permutations
+* Compare strings ignoring order
+* Validate rearrangements
+
+All same **core logic**.
+
+---
+
+## 🧪 Practice Problems 
+
+1. Check if two strings are anagrams
+2. Check if two strings are permutations
+3. Check if two strings have same character set
+4. Count minimum deletions to make two strings anagrams (logic only)
+
+---
+
+
