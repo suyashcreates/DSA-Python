@@ -1,0 +1,129 @@
+
+
+## 1️⃣ What is a Palindrome (DSA View)
+
+A string is palindrome if:
+
+* reading left → right
+* equals right → left
+
+Examples:
+
+```
+"madam"  ✅
+"abba"   ✅
+"abc"    ❌
+```
+
+---
+
+## 2️⃣ Brute Force Idea (Not Best)
+
+* Reverse string
+* Compare with original
+
+⏱️ O(n)
+📦 Extra space needed
+
+Works, but **not ideal in interviews**.
+
+---
+
+## 3️⃣ Optimal Insight: Two Pointers
+
+Use:
+
+* `i` → start
+* `j` → end
+
+Move inward:
+
+* if mismatch → not palindrome
+* else continue
+
+---
+
+## 4️⃣ Basic Palindrome Code
+
+```python
+def is_palindrome(s):
+    i, j = 0, len(s) - 1
+
+    while i < j:
+        if s[i] != s[j]:
+            return False
+        i += 1
+        j -= 1
+
+    return True
+```
+
+⏱️ Time: O(n)
+📦 Space: O(1)
+
+---
+
+## 5️⃣ Valid Palindrome (Ignoring Junk)
+
+Real problems include:
+
+* spaces
+* punctuation
+* case mismatch
+
+Use:
+
+* `isalnum()`
+* `lower()`
+
+---
+
+### Code
+
+```python
+def valid_palindrome(s):
+    i, j = 0, len(s) - 1
+
+    while i < j:
+        if not s[i].isalnum():
+            i += 1
+            continue
+        if not s[j].isalnum():
+            j -= 1
+            continue
+
+        if s[i].lower() != s[j].lower():
+            return False
+
+        i += 1
+        j -= 1
+
+    return True
+```
+
+---
+
+## 6️⃣ Why This Topic Matters
+
+This teaches you:
+
+* pointer movement control
+* skipping logic
+* condition-driven traversal
+
+These skills appear in:
+
+* string cleaning
+* validation problems
+* substring logic later
+
+---
+
+## 🧪 Practice Problems 
+
+1. Check if string is palindrome
+2. Check valid palindrome (ignore non-alphanumeric)
+3. Count palindromic characters (logic only)
+4. Check if string becomes palindrome after removing one char (think only)
+
+---
