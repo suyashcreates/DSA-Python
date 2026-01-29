@@ -1,0 +1,97 @@
+
+---
+
+## 1️⃣ What is a Subsequence (Clear Definition)
+
+A string **s** is a subsequence of **t** if:
+
+* characters appear in the **same order**
+* but **not necessarily contiguous**
+
+Example:
+
+```
+s = "ace"
+t = "abcde"
+→ true
+```
+
+❌ Order change is NOT allowed.
+
+---
+
+## 2️⃣ Why This Topic Matters
+
+Subsequence logic appears in:
+
+* string filtering
+* pattern matching
+* DP problems later
+* interview warm-up questions
+
+This is a **thinking problem**, not syntax.
+
+---
+
+## 3️⃣ Brute Force Thinking (Wrong Way)
+
+* Generate all subsequences
+* Compare
+
+🚫 Exponential
+🚫 Completely unnecessary
+
+---
+
+## 4️⃣ Optimal Insight: Two Pointers
+
+Use:
+
+* `i` → pointer for subsequence
+* `j` → pointer for main string
+
+Move forward only.
+
+---
+
+## 5️⃣ Subsequence Check Code
+
+```python
+def is_subsequence(s, t):
+    i = 0
+
+    for ch in t:
+        if i < len(s) and s[i] == ch:
+            i += 1
+
+    return i == len(s)
+```
+
+⏱️ Time: O(n)
+📦 Space: O(1)
+
+---
+
+## 6️⃣ Key Observations (Important)
+
+* You **never move backwards**
+* You **only care about order**
+* Skipping is allowed
+* Matching consumes characters
+
+This logic appears later in:
+
+* string DP
+* greedy problems
+
+---
+
+## 🧪 Practice Problems 
+
+1. Check if string `s` is subsequence of `t`
+2. Check if one string is subsequence of another
+3. Count how many characters of `s` appear in order in `t`
+4. Explain why subsequence ≠ substring (README)
+
+---
+
