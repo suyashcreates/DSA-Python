@@ -1,0 +1,125 @@
+---
+
+## 1️⃣ Substring vs Subsequence (Very Important)
+
+### Substring
+
+* Characters must be **continuous**
+* No skipping allowed
+
+Example:
+
+```
+"bcd" is a substring of "abcde" ✅
+"ace" is NOT ❌
+```
+
+### Subsequence
+
+* Order matters
+* Skipping allowed
+
+📌 Today is **only substring**.
+
+---
+
+## 2️⃣ Why Substring Needs Separate Study
+
+Substring problems:
+
+* care about **ranges**
+* depend on **start & end**
+* later use sliding window
+
+If you don’t lock this now, window problems feel magic later.
+
+---
+
+## 3️⃣ Generating All Substrings (Brute Force)
+
+This teaches **range thinking**.
+
+### Logic
+
+* Fix starting index `i`
+* Extend ending index `j`
+
+---
+
+### Code
+
+```python
+s = "abc"
+
+for i in range(len(s)):
+    for j in range(i, len(s)):
+        print(s[i:j+1])
+```
+
+⏱️ Time: O(n²)
+📦 Space: O(1)
+
+---
+
+## 4️⃣ Key Observation (Exam / Interview Gold)
+
+Number of substrings of length `n`:
+
+```
+n * (n + 1) / 2
+```
+
+So substring problems:
+
+* **cannot** be better than O(n²) unless optimized logically
+
+---
+
+## 5️⃣ Checking if a Substring Exists (Naive)
+
+Problem:
+
+> Check if `pat` exists in `text`
+
+### Logic
+
+* Try matching from every index
+* Stop early if mismatch
+
+---
+
+### Code
+
+```python
+def is_substring(text, pat):
+    n, m = len(text), len(pat)
+
+    for i in range(n - m + 1):
+        if text[i:i+m] == pat:
+            return True
+
+    return False
+```
+
+---
+
+## 6️⃣ Why This Topic Matters
+
+This prepares you for:
+
+* sliding window
+* pattern matching
+* string constraints
+* optimization thinking
+
+Without this, later topics feel random.
+
+---
+
+## 🧪 Practice Problems 
+
+1. Print all substrings of a string
+2. Count total substrings
+3. Check if pattern exists in text
+4. Difference between substring & subsequence (write in README)
+
