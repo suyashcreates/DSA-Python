@@ -1,0 +1,214 @@
+
+## 1️⃣ Multiple Recursion (More than one recursive call)
+
+### Definition
+
+When a function calls itself **more than once** in the same function body.
+
+Example:
+
+```python
+def fib(n):
+    if n <= 1:
+        return n
+    return fib(n-1) + fib(n-2)
+```
+
+Here:
+
+* Each call creates **two more calls**
+* Tree-like recursion structure
+
+---
+
+## 2️⃣ Recursion Tree Visualization
+
+For `fib(4)`:
+
+```text
+fib(4)
+ ├─ fib(3)
+ │   ├─ fib(2)
+ │   │   ├─ fib(1)
+ │   │   └─ fib(0)
+ │   └─ fib(1)
+ └─ fib(2)
+     ├─ fib(1)
+     └─ fib(0)
+```
+
+📌 Key Insight:
+Same subproblems are solved **again and again**
+
+This is why recursion can be slow.
+
+---
+
+## 3️⃣ Time Complexity of Multiple Recursion
+
+### Fibonacci example:
+
+```text
+T(n) = T(n-1) + T(n-2) + O(1)
+```
+
+* TC ≈ **O(2ⁿ)** (exponential)
+* SC = **O(n)** (stack depth)
+
+📌 Rule:
+
+> If recursion branches → expect exponential time unless optimized
+
+---
+
+## 4️⃣ Overlapping Subproblems (Important Concept)
+
+When the **same recursive call** appears multiple times.
+
+Example:
+
+* `fib(2)` is calculated multiple times
+* `fib(1)` and `fib(0)` repeat heavily
+
+📌 This concept leads to **Dynamic Programming** later
+(Don’t implement DP yet — just understand the issue)
+
+---
+
+## 5️⃣ Stack Overflow (Why it happens)
+
+Stack overflow occurs when:
+
+* Base case is missing
+* Base case is wrong
+* Recursion depth is too large
+
+Example:
+
+```python
+def infinite(n):
+    print(n)
+    infinite(n+1)
+```
+
+📌 Python recursion limit ≈ **1000 calls**
+
+---
+
+## 6️⃣ Recursion vs Iteration (Conceptual Difference)
+
+### Recursion
+
+* Uses **call stack**
+* Cleaner logic
+* Higher space usage
+
+### Iteration
+
+* Uses loops
+* Lower space
+* Sometimes harder to think
+
+Example: Factorial
+
+**Recursive**
+
+```python
+def fact(n):
+    if n == 0:
+        return 1
+    return n * fact(n-1)
+```
+
+**Iterative**
+
+```python
+def fact(n):
+    res = 1
+    for i in range(1, n+1):
+        res *= i
+    return res
+```
+
+📌 Interviews may ask:
+
+> “Can you convert recursion to iteration?”
+
+---
+
+## 7️⃣ When to Use Recursion (Rule of Thumb)
+
+Use recursion when:
+
+* Problem has **natural substructure**
+* Tree / divide-type logic
+* Clean base case exists
+
+Avoid recursion when:
+
+* Very deep calls
+* Simple loops can do the job
+
+---
+
+## 🧪 Practice Problems 
+
+### Problem 1: Count number of recursive calls
+
+```python
+def fun(n):
+    if n == 0:
+        return
+    fun(n-1)
+    fun(n-1)
+```
+
+📌 Calls = **2ⁿ − 1**
+
+---
+
+### Problem 2: Print all subsequences of a string (thinking only)
+
+```python
+def subseq(s, i, curr):
+    if i == len(s):
+        print(curr)
+        return
+    subseq(s, i+1, curr)
+    subseq(s, i+1, curr + s[i])
+```
+
+📌 TC: **O(2ⁿ)**
+📌 SC: **O(n)**
+
+(No optimization, just understanding)
+
+---
+
+### Problem 3: Power function
+
+```python
+def power(x, n):
+    if n == 0:
+        return 1
+    return x * power(x, n-1)
+```
+
+📌 TC: O(n)
+📌 SC: O(n)
+
+---
+
+## 🎁 BONUS: Interview Thinking Rule
+
+Before writing recursion, say aloud:
+
+1. What does **one call do**?
+2. What is the **smallest input**?
+3. How many times will this function be called?
+
+If you can’t answer → don’t code yet.
+
+---
+
+
