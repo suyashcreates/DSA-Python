@@ -1,0 +1,66 @@
+
+
+* Why does Insertion Sort work?
+* Best case time complexity?
+* Worst case?
+* Why is it adaptive?
+
+Then dry run manually on:
+
+```
+[9, 5, 1, 4, 3]
+```
+
+Write each step in comments inside your file.
+
+---
+
+## 💻 2️⃣ Code Task (Core)
+
+### Task A:
+
+Implement:
+
+```python
+def insertion_sort(arr):
+```
+
+No shortcuts. No built-ins.
+
+### Task B:
+
+Modify it so it:
+
+* Counts number of comparisons
+* Counts number of swaps
+* Returns both
+
+This builds awareness of cost. That’s how engineers think.
+
+---
+
+## 🔍 3️⃣ Deep Understanding Drill
+
+After coding, answer in README:
+
+* Why do we shift instead of swap repeatedly?
+* When is Insertion Sort better than Bubble Sort?
+* Where is it used in real systems?
+
+Hint: small arrays + nearly sorted data.
+
+---
+
+## 🧪 4️⃣ Edge Case Testing
+
+Test with:
+
+* Already sorted array
+* Reverse sorted array
+* All elements same
+* Single element
+* Empty list
+
+Engineers test edges. Students don’t.
+
+---
